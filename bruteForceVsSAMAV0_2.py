@@ -6,8 +6,9 @@ This algorithm compares the shortest path calculated from either
     2. Simulated annealing and the metropolis algorithm(SAMA).
 The randonly generated sites are listed in rr.csv
 NN is a number that is larger than 3 and smaller than N=25
-Version V0_1: 1. Change the program to loops and calculate the possible NNs automatically
+Version V0_2: 1. Change the program to loops and calculate the possible NNs automatically
               2. Add function definition def cpu_stats() to keep track of RAM usage.
+              3. Add the targetScore to SAMA 
 """
 from math import sqrt,exp
 import numpy as np
@@ -16,6 +17,7 @@ from random import random,randrange
 import itertools
 import time
 import pandas as pd
+import random as rand
 N = 25 # number of sites
 
 # Randomly generate x and y coordinates of N locations 
@@ -84,7 +86,7 @@ def cpu_stats():
 
 def bruteForce(NN, r):
     x = list(findOrders(NN))
-    #print(cpu_stats())
+    print(cpu_stats())
     distances = []
 
     r_copy = np.copy(r)
@@ -106,74 +108,133 @@ def bruteForce(NN, r):
         #print("All possible distances: {}".format(distances))        
     end = time.time()
     writeLog("Number of sites: {}:\t".format(NN))
-    writeLog(cpu_stats())
+    #writeLog(cpu_stats())
     writeLog("The smallest value by brute force: {:.5f}\t".format( np.min(distances)))
     writeLog("Time elpased: {:.5f}\t".format(end-start))
     return end-start, np.min(distances)
 
 # Method 2: Simulated annealing and the metropolis algorithm.
 R = 0.02
-Tmax = 10.0
-Tmin = 1e-3
-tau = 1e5
+Tmax = 1.0
+Tmin = 1e-2
+tau = 1e3
 
-def TSP(NN,r):
-    D = distance(r)
+def TSP(NN, r, smallestDistance):
+    score = distance(r)
+    #$initScore = score
+    #minScore = initScore
+    #print("Initial score = {:.5f}\n".format(initScore))
+    #tRecord = []
+    #scoreRecord = []
 
-    """# Set up the graphics
-    canvas(center=vector(0.5,0.5,0.0), background = color.white)
-    for i in range(NN):
-        if i == 0:
-            sphere(pos=vector(r[i,0],r[i,1],0.0),radius=R,color = color.blue)
-        else:
-            sphere(pos=vector(r[i,0],r[i,1],0.0),radius=R,color = color.black)
-    l = curve(pos=r.tolist(),radius=R/2,color = color.red)"""
+    t0=0 # setting up the beginning of the time "lump"
+    #tRecord += [0]
+    #scoreRecord += [score]
 
-    # Main loop
-    t = 0
-    T = Tmax
+    firstInitial = True
+    
+    targetScore = smallestDistance
+    
     start = time.time()
-    while T>Tmin:
-        
-        # Cooling
-        t += 1
-        T = Tmax*exp(-t/tau)
-
-        """# Update the visualization every 100 moves
-        if t%100==0:
-            rate(50)
-            for i in range(NN+1):
-                pos = vector(r[i,0],r[i,1],0.0)
-                l.modify(i,pos)"""
-
-        # Choose two cities to swap and make sure they are distinct
-        i,j = randrange(1,NN),randrange(1,NN)
-        while i==j:
-            i,j = randrange(1,NN),randrange(1,NN)
-        
-        if ( i == 0 ) or ( j == 0 ):
+    while score>targetScore:
+    
+        if firstInitial == False: 
+            # Set up another initial configuration
+            randomList = rand.sample(range(0, NN), NN)
+    
+            r = np.empty([NN+1,4])
+            for j in randomList:
+                r[j,0] = rr.iloc[j][0]
+                r[j,1] = rr.iloc[j][1]
+                r[j,2] = 0.0
+                r[j,3] = j
             r[NN,0] = r[0,0]
             r[NN,1] = r[0,1]
-            #r[NN,2] = r[0,2]
-            r[NN,3] = r[0,3]
+            r[NN,2] = r[0,2]
+            r[NN,3] = NN
+        
+        #Calculate the initial distance
+        score = distance(r)
 
-        # Swap them and calculate the change in distance
-        oldD = D
-        r[i,0],r[j,0] = r[j,0],r[i,0]
-        r[i,1],r[j,1] = r[j,1],r[i,1]
-        D = distance(r)
-        deltaD = D - oldD
+        """# Set up the graphics
+        canvas(center=vector(0.5,0.5,0.0), background = color.white)
+        for i in range(NN):
+            if i == 0:
+                sphere(pos=vector(r[i,0],r[i,1],0.0),radius=R,color = color.blue)
+            else:
+                sphere(pos=vector(r[i,0],r[i,1],0.0),radius=R,color = color.black)
+            l = curve(pos=r.tolist(),radius=R/2,color = color.red)"""
 
-        # If the move is rejected, swap them back again
-        if random()>exp(-deltaD/T):
+        # Main loop
+        t = 0
+        T = Tmax
+        
+        while T>Tmin:
+        
+            # Cooling
+            t += 1
+            T = Tmax*exp(-t/tau)
+
+            """# Update the visualization every 100 moves
+            if t%100==0:
+                rate(50)
+                for i in range(NN+1):
+                    pos = vector(r[i,0],r[i,1],0.0)
+                    l.modify(i,pos)"""
+
+            # Choose two cities to swap and make sure they are distinct
+            i,j = randrange(1,NN),randrange(1,NN)
+            while i==j:
+                i,j = randrange(1,NN),randrange(1,NN)
+
+            # Swap them and calculate the change in distance
+            oldScore = score
             r[i,0],r[j,0] = r[j,0],r[i,0]
             r[i,1],r[j,1] = r[j,1],r[i,1]
-            D = oldD
+            score = distance(r)
+            deltaScore = score - oldScore
+            
+            
+            try:
+                ans = np.exp(-deltaScore/T)
+            except OverflowError:
+                if -deltaScore/T > 0:
+                    ans = float('inf')
+                else:
+                    ans = 0.0
 
+            # If the move is rejected, swap them back again
+            if random() > ans:
+                r[i,0],r[j,0] = r[j,0],r[i,0]
+                r[i,1],r[j,1] = r[j,1],r[i,1]
+                score = oldScore
+                
+                if np.abs(score - distance(r))>1e-5:
+                    print("score: {}".format(score))
+                    print("distance: {}".format(distance()))
+                    print("Error Line 205")
+                    
+            """if score < minScore: 
+                minScore = score
+                outPutScrVSTime(tRecord, scoreRecord)
+                outPutSitesOrder(rCoor)
+                dt = datetime.now()
+                print(dt.year, '/', dt.month, '/', dt.day, ' ',
+                      dt.hour, ':', dt.minute, ':', dt.second)
+                print("Delta score = {:.5f}".format(deltaScore))
+                print("New score = {:.5f}\n".format(score))"""
+                
+            """if t%10==0:
+                tRecord += [t0+t]
+                scoreRecord += [score]"""
+        
+        t0 = t0 + t # go to next time "lump"
+        firstInitial = False
+        
     end = time.time()
-    writeLog("The smallest value by TSP: {:.5f}\t".format(D))
+    writeLog("The smallest value by SAMA: {:.5f}\t".format(score))
     writeLog("Time elpased: {:.5f}\n".format(end-start))
-    return end-start, D
+    return end-start, score
 
 
 NN = 12  # NN is a value smaller than N
@@ -208,7 +269,7 @@ for i in nSites:
     
     r = r_init
     
-    elapsedTime , smallestDistance = TSP(NN, r)
+    elapsedTime , smallestDistance = TSP(NN, r, smallestDistance)
     
     TimeTSP.append(elapsedTime)
     distanceTSP.append(smallestDistance)

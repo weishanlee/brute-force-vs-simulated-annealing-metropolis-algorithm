@@ -9,7 +9,8 @@ The randonly generated sites are listed in rr.csv
 
 NN is a number that is larger than 3 and smaller than N=25
 
-Version V0_1: 
+Version V0_2: 
 
     1. Change the program to loops and calculate the possible NNs automatically
     2. Add function definition def cpu_stats() to keep track of RAM usage.
+    3. Add the targetScore to SAMA 
