@@ -1,10 +1,41 @@
-Number of sites: 3:	The smallest value in distance by brute force method: 0.62887	Time elpased: 0.00000	The smallest value in distance by traveling salesman problem: 0.62887	Time elpased: 22.60827
-Number of sites: 4:	The smallest value in distance by brute force method: 1.59673	Time elpased: 0.00000	The smallest value in distance by traveling salesman problem: 1.59673	Time elpased: 24.11281
-Number of sites: 5:	The smallest value in distance by brute force method: 2.41341	Time elpased: 0.00000	The smallest value in distance by traveling salesman problem: 2.41341	Time elpased: 25.61153
-Number of sites: 6:	The smallest value in distance by brute force method: 2.79192	Time elpased: 0.00199	The smallest value in distance by traveling salesman problem: 2.79192	Time elpased: 29.98176
-Number of sites: 7:	The smallest value in distance by brute force method: 2.96497	Time elpased: 0.01304	The smallest value in distance by traveling salesman problem: 2.96497	Time elpased: 29.82367
-Number of sites: 8:	The smallest value in distance by brute force method: 3.02209	Time elpased: 0.10129	The smallest value in distance by traveling salesman problem: 3.03730	Time elpased: 33.89277
-Number of sites: 9:	The smallest value in distance by brute force method: 3.06080	Time elpased: 0.92184	The smallest value in distance by traveling salesman problem: 3.17661	Time elpased: 36.04915
-Number of sites: 10:	The smallest value in distance by brute force method: 3.06193	Time elpased: 9.41851	The smallest value in distance by traveling salesman problem: 3.17774	Time elpased: 39.79063
-Number of sites: 11:	The smallest value in distance by brute force method: 3.07254	Time elpased: 103.55862	The smallest value in distance by traveling salesman problem: 3.07254	Time elpased: 41.51532
-Number of sites: 12:	The smallest value in distance by brute force method: 3.11095	Time elpased: 1265.89700	The smallest value in distance by traveling salesman problem: 3.24298	Time elpased: 45.28936
+Number of sites: 3:	memory: 0.13GB	The smallest value by brute force: 2.23909	Time elpased: 0.00302	The smallest value by TSP: 2.23909	Time elpased: 35.10273
+Number of sites: 4:	memory: 0.12GB	The smallest value by brute force: 2.23909	Time elpased: 0.00000	The smallest value by TSP: 2.23909	Time elpased: 51.53413
+Number of sites: 5:	memory: 0.12GB	The smallest value by brute force: 2.76102	Time elpased: 0.00000	The smallest value by TSP: 2.76102	Time elpased: 39.67240
+Number of sites: 6:	memory: 0.12GB	The smallest value by brute force: 2.79234	Time elpased: 0.00200	The smallest value by TSP: 2.79234	Time elpased: 46.48159
+Number of sites: 7:	memory: 0.12GB	The smallest value by brute force: 3.05385	Time elpased: 0.02998	The smallest value by TSP: 3.06568	Time elpased: 52.63327
+Number of sites: 8:	memory: 0.12GB	The smallest value by brute force: 3.13309	Time elpased: 0.10459	The smallest value by TSP: 3.14491	Time elpased: 41.16229
+Number of sites: 9:	memory: 0.13GB	The smallest value by brute force: 3.15674	Time elpased: 2.41177	The smallest value by TSP: 3.16857	Time elpased: 62.33650
+Number of sites: 10:	memory: 0.14GB	The smallest value by brute force: 3.18208	Time elpased: 10.10598	The smallest value by TSP: 3.19391	Time elpased: 43.97111
+Number of sites: 11:	memory: 0.47GB	The smallest value by brute force: 3.18832	Time elpased: 147.24263	The smallest value by TSP: 3.18832	Time elpased: 91.67439
+Number of sites: 12:	memory: 0.23GB	The smallest value by brute force: 3.33326	Time elpased: 2925.04837	The smallest value by TSP: 3.40264	Time elpased: 106.17483
+Number of sites: 3:	Memory: 0.13GB	The smallest value by brute force: 1.73297	Time elpased: 0.00000	Number of sites: 3:	Memory: 0.13GB	The smallest value by brute force: 1.53684	Time elpased: 0.00000	The smallest value by SAMA: 1.53684	Time elpased: 0.00000
+Number of sites: 4:	Memory: 0.13GB	The smallest value by brute force: 1.69156	Time elpased: 0.00000	The smallest value by SAMA: 1.69156	Time elpased: 0.00000
+Number of sites: 5:	Memory: 0.13GB	The smallest value by brute force: 2.01693	Time elpased: 0.00100	Number of sites: 3:	Memory: 0.13GB	The smallest value by brute force: 1.42639	Time elpased: 0.00000	The smallest value by SAMA: 1.42639	Time elpased: 0.00000
+Number of sites: 4:	Memory: 0.13GB	The smallest value by brute force: 2.23369	Time elpased: 0.00000	The smallest value by SAMA: 2.23369	Time elpased: 0.00000
+Number of sites: 5:	Memory: 0.13GB	The smallest value by brute force: 2.23832	Time elpased: 0.00100	Number of sites: 3:	Memory: 0.13GB	The smallest value by brute force: 1.26894	Time elpased: 0.00000	The smallest value by SAMA: 1.26894	Time elpased: 0.00000
+Number of sites: 4:	Memory: 0.13GB	The smallest value by brute force: 1.28081	Time elpased: 0.00000	Number of sites: 3:	Memory: 0.13GB	The smallest value by brute force: 1.81825	Time elpased: 0.00000	The smallest value by SAMA: 1.81825	Time elpased: 0.00000
+Number of sites: 4:	Memory: 0.13GB	The smallest value by brute force: 1.88541	Time elpased: 0.00000	The smallest value by SAMA: 1.88541	Time elpased: 0.19490
+Number of sites: 5:	Memory: 0.13GB	The smallest value by brute force: 1.90035	Time elpased: 0.00100	The smallest value by SAMA: 1.90035	Time elpased: 0.25786
+Number of sites: 6:	Memory: 0.13GB	The smallest value by brute force: 1.95625	Time elpased: 0.00200	The smallest value by SAMA: 1.95625	Time elpased: 0.55671
+Number of sites: 7:	Memory: 0.13GB	The smallest value by brute force: 1.98042	Time elpased: 0.01398	The smallest value by SAMA: 1.98042	Time elpased: 2.47312
+Number of sites: 8:	Memory: 0.13GB	The smallest value by brute force: 2.16791	Time elpased: 0.10641	The smallest value by SAMA: 2.16791	Time elpased: 0.58663
+Number of sites: 9:	Memory: 0.13GB	The smallest value by brute force: 2.32749	Time elpased: 0.93058	The smallest value by SAMA: 2.32749	Time elpased: 0.91190
+Number of sites: 10:	Memory: 0.16GB	The smallest value by brute force: 2.60579	Time elpased: 10.09085	The smallest value by SAMA: 2.60579	Time elpased: 0.42329
+Number of sites: 3:	Memory: 0.13GB	The smallest value by brute force: 0.94673	Time elpased: 0.00000	The smallest value by SAMA: 0.94673	Time elpased: 0.00000
+Number of sites: 4:	Memory: 0.13GB	The smallest value by brute force: 1.02655	Time elpased: 0.00000	The smallest value by SAMA: 1.02655	Time elpased: 0.00000
+Number of sites: 5:	Memory: 0.13GB	The smallest value by brute force: 1.39486	Time elpased: 0.00000	The smallest value by SAMA: 1.39486	Time elpased: 0.20856
+Number of sites: 6:	Memory: 0.13GB	The smallest value by brute force: 1.75452	Time elpased: 0.00300	The smallest value by SAMA: 1.75452	Time elpased: 0.21547
+Number of sites: 7:	Memory: 0.13GB	The smallest value by brute force: 2.76836	Time elpased: 0.01199	The smallest value by SAMA: 2.76836	Time elpased: 1.04954
+Number of sites: 8:	Memory: 0.13GB	The smallest value by brute force: 2.77998	Time elpased: 0.15165	The smallest value by SAMA: 2.77998	Time elpased: 0.74232
+Number of sites: 9:	Memory: 0.13GB	The smallest value by brute force: 2.83903	Time elpased: 1.17935	The smallest value by SAMA: 2.83903	Time elpased: 0.88127
+Number of sites: 10:	Memory: 0.16GB	The smallest value by brute force: 2.93090	Time elpased: 10.65678	The smallest value by SAMA: 2.93090	Time elpased: 1.48314
+Number of sites: 3:	The smallest value by brute force: 1.60775	Time elpased: 0.00000	The smallest value by SAMA: 1.60775	Time elpased: 0.00000
+Number of sites: 4:	The smallest value by brute force: 2.28218	Time elpased: 0.00100	The smallest value by SAMA: 2.28218	Time elpased: 0.22638
+Number of sites: 5:	The smallest value by brute force: 2.29282	Time elpased: 0.00153	The smallest value by SAMA: 2.29282	Time elpased: 0.19307
+Number of sites: 6:	The smallest value by brute force: 2.34931	Time elpased: 0.00199	The smallest value by SAMA: 2.34931	Time elpased: 0.21380
+Number of sites: 7:	The smallest value by brute force: 2.45325	Time elpased: 0.00999	The smallest value by SAMA: 2.45325	Time elpased: 0.26007
+Number of sites: 8:	The smallest value by brute force: 2.48721	Time elpased: 0.19148	The smallest value by SAMA: 2.48721	Time elpased: 0.34960
+Number of sites: 9:	The smallest value by brute force: 2.49344	Time elpased: 1.04207	The smallest value by SAMA: 2.49344	Time elpased: 0.31352
+Number of sites: 10:	The smallest value by brute force: 2.61254	Time elpased: 9.40869	The smallest value by SAMA: 2.61254	Time elpased: 0.92607
+Number of sites: 11:	The smallest value by brute force: 2.99343	Time elpased: 105.44149	The smallest value by SAMA: 2.99343	Time elpased: 1.43229
+Number of sites: 12:	The smallest value by brute force: 3.21734	Time elpased: 1517.16532	The smallest value by SAMA: 3.21734	Time elpased: 8.04469
