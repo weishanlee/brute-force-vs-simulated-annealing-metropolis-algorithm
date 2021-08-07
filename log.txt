@@ -1,0 +1,10 @@
+Number of sites: 3:	The smallest value in distance by brute force method: 0.62887	Time elpased: 0.00000	The smallest value in distance by traveling salesman problem: 0.62887	Time elpased: 22.60827
+Number of sites: 4:	The smallest value in distance by brute force method: 1.59673	Time elpased: 0.00000	The smallest value in distance by traveling salesman problem: 1.59673	Time elpased: 24.11281
+Number of sites: 5:	The smallest value in distance by brute force method: 2.41341	Time elpased: 0.00000	The smallest value in distance by traveling salesman problem: 2.41341	Time elpased: 25.61153
+Number of sites: 6:	The smallest value in distance by brute force method: 2.79192	Time elpased: 0.00199	The smallest value in distance by traveling salesman problem: 2.79192	Time elpased: 29.98176
+Number of sites: 7:	The smallest value in distance by brute force method: 2.96497	Time elpased: 0.01304	The smallest value in distance by traveling salesman problem: 2.96497	Time elpased: 29.82367
+Number of sites: 8:	The smallest value in distance by brute force method: 3.02209	Time elpased: 0.10129	The smallest value in distance by traveling salesman problem: 3.03730	Time elpased: 33.89277
+Number of sites: 9:	The smallest value in distance by brute force method: 3.06080	Time elpased: 0.92184	The smallest value in distance by traveling salesman problem: 3.17661	Time elpased: 36.04915
+Number of sites: 10:	The smallest value in distance by brute force method: 3.06193	Time elpased: 9.41851	The smallest value in distance by traveling salesman problem: 3.17774	Time elpased: 39.79063
+Number of sites: 11:	The smallest value in distance by brute force method: 3.07254	Time elpased: 103.55862	The smallest value in distance by traveling salesman problem: 3.07254	Time elpased: 41.51532
+Number of sites: 12:	The smallest value in distance by brute force method: 3.11095	Time elpased: 1265.89700	The smallest value in distance by traveling salesman problem: 3.24298	Time elpased: 45.28936
