@@ -18,6 +18,8 @@ import itertools
 import time
 import pandas as pd
 import random as rand
+import os, psutil  
+
 N = 25 # number of sites
 
 # Randomly generate x and y coordinates of N locations 
@@ -75,8 +77,10 @@ def writeLog(msg):
     with open('log.txt', 'a+') as the_file:
         print(msg)
         the_file.write(msg)
-        
-import os, psutil  
+
+# If previous log.txt file exists, remove it.
+if os.path.exists("./log.txt"):
+    os.remove("./log.txt")
 
 def cpu_stats():
     pid = os.getpid()
@@ -236,7 +240,6 @@ def TSP(NN, r, smallestDistance):
     writeLog("Time elpased: {:.5f}\n".format(end-start))
     return end-start, score
 
-
 NN = 12  # NN is a value smaller than N
 # Loop for calculating all NN
 nSites = np.arange(3,NN+1).tolist()
@@ -289,7 +292,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.ticker import AutoMinorLocator
 plt.figure()
-plt.title("Comparisons of Computation Time Between Brute-force and TSP")
+plt.title("Comparisons of Computation Time Between Brute-force and SAMA")
 ax = plt.gca()
 df = pd.read_csv("./bruteForceVsTSP.csv") 
 plt.plot(df.nSites,df.elapsedTimeBruteForce,'bo-', df.nSites,df.elapsedTimeTSP,'ro-')
@@ -301,7 +304,7 @@ ax.set_ylabel("Computation Time (sec)",size = 16)
 ax.xaxis.set_minor_locator(minorLocatorX) # add minor ticks on x axis
 ax.yaxis.set_minor_locator(minorLocatorY) # add minor ticks on y axis
 plt.xlim(2,13)
-plt.ylim(-200,1600)
+plt.ylim(-200,1800)
 plt.grid(True)
 plt.show()   
-plt.savefig('fig.eps') #, format='eps')
+plt.savefig('comparison.eps')
