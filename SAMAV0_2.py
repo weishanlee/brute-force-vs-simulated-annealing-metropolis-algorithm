@@ -9,6 +9,7 @@ NN is a number that is larger than 3 and smaller than N=25
 Version V0_2: 1. Change the program to loops and calculate the possible NNs automatically
               2. Add function definition def cpu_stats() to keep track of RAM usage.
               3. Add the targetScore to SAMA 
+              4. Add repeated times for averaing computation time of Brute-force or TSP
 """
 from math import sqrt,exp
 import numpy as np
@@ -23,12 +24,14 @@ import os, psutil
 N = 25 # number of sites
 
 # Randomly generate x and y coordinates of N locations 
-rr = np.random.rand(N,2)
+"""rr = np.random.rand(N,2)
 rr = pd.DataFrame(rr)
 dfCSV = rr
 dfCSV_file = open("./rr.csv",'w',newline='') 
 dfCSV.to_csv(dfCSV_file, sep=',', encoding='utf-8',index=False)
-dfCSV_file.close()
+dfCSV_file.close()"""
+
+rr = pd.read_csv("./rr.csv")
 
 # Method 1: brute force method
 
@@ -247,10 +250,10 @@ nSites = np.arange(3,NN+1).tolist()
 timeBruteForce = []
 distanceBruteForce = []
     
-TimeTSP = []
+timeTSP = []
 distanceTSP = []
 
-for i in nSites:
+"""for i in nSites:
     NN = i     
     r = np.empty([NN+1,4])
     for j in range(NN):
@@ -274,14 +277,49 @@ for i in nSites:
     
     elapsedTime , smallestDistance = TSP(NN, r, smallestDistance)
     
-    TimeTSP.append(elapsedTime)
-    distanceTSP.append(smallestDistance)
+    timeTSP.append(elapsedTime)
+    distanceTSP.append(smallestDistance)"""
+
+numberRepeated = 5
+
+for i in nSites:
+    NN = i     
+    r = np.empty([NN+1,4])
+    for k in range(numberRepeated): 
+        #repeated times for averaing computation time of Brute-force or TSP
+        timeTSPTemp = []
+        timeBruteForceTemp = []
+        for j in range(NN):
+            r[j,0] = rr.iloc[j][0]
+            r[j,1] = rr.iloc[j][1]
+            r[j,2] = 0.0
+            r[j,3] = j
+        r[NN,0] = r[0,0]
+        r[NN,1] = r[0,1]
+        r[NN,2] = r[0,2]
+        r[NN,3] = NN
+
+        r_init = np.copy(r)
+    
+        elapsedTime , smallestDistanceBruteForce = bruteForce(NN, r)
+    
+        timeBruteForceTemp.append(elapsedTime)
+        r = r_init
+    
+        elapsedTime , smallestDistanceTSP = TSP(NN, r, smallestDistanceBruteForce)
+        timeTSPTemp.append(elapsedTime)
+        
+    timeBruteForce.append( np.mean(timeBruteForceTemp) )
+    timeTSP.append( np.mean(timeTSPTemp) )
+    
+    distanceBruteForce.append(smallestDistanceBruteForce)
+    distanceTSP.append(smallestDistanceTSP)
 
 # Write to csv
 data = {'nSites' : nSites,'smallestTotalDistanceBruteForce' : distanceBruteForce,
                           'elapsedTimeBruteForce' : timeBruteForce,
                           'smallestTotalDistanceTSP' : distanceTSP,
-                          'elapsedTimeTSP' : TimeTSP}
+                          'elapsedtimeTSP' : timeTSP}
 dfCSV = pd.DataFrame(data)
 dfCSV_file = open("./bruteForceVsTSP.csv",'w',newline='') 
 dfCSV.to_csv(dfCSV_file, sep=',', encoding='utf-8',index=False)
@@ -295,7 +333,7 @@ plt.figure()
 plt.title("Comparisons of Computation Time Between Brute-force and SAMA")
 ax = plt.gca()
 df = pd.read_csv("./bruteForceVsTSP.csv") 
-plt.plot(df.nSites,df.elapsedTimeBruteForce,'bo-', df.nSites,df.elapsedTimeTSP,'ro-')
+plt.plot(df.nSites,df.elapsedTimeBruteForce,'bo-', df.nSites,df.elapsedtimeTSP,'ro-')
 plt.minorticks_on()
 minorLocatorX = AutoMinorLocator(2) # number of minor intervals per major # inteval
 minorLocatorY = AutoMinorLocator(4)
@@ -304,7 +342,7 @@ ax.set_ylabel("Computation Time (sec)",size = 16)
 ax.xaxis.set_minor_locator(minorLocatorX) # add minor ticks on x axis
 ax.yaxis.set_minor_locator(minorLocatorY) # add minor ticks on y axis
 plt.xlim(2,13)
-plt.ylim(-200,1800)
+plt.ylim(-200,1900)
 plt.grid(True)
 plt.show()   
 plt.savefig('comparison.eps')
